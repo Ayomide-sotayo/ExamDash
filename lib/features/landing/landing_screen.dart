@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_routes.dart';
@@ -21,86 +22,102 @@ class _LandingScreenState extends State<LandingScreen> {
   }
 
   void _onGetStarted() {
-    EventTracker.track('signup_started');
-    Navigator.pushNamed(context, AppRoutes.signup);
+    EventTracker.track('readiness_intro_started');
+    // Navigating to intro screen as requested in objective
+    Navigator.pushNamed(context, AppRoutes.readinessCheck);
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColors.gradientStart,
-              AppColors.gradientMid,
-              AppColors.gradientEnd,
-            ],
-            stops: [0.0, 0.5, 1.0],
-          ),
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.screenPadding,
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // 1. Mesh Gradient Image (Top Aligned)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            height: screenHeight * 0.65, // Occupies top 65%
+            child: Image.asset(
+              'assets/gradient.png',
+              fit: BoxFit.cover,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: AppSpacing.xl),
+          ),
 
-                // Back arrow (matches Figma)
-                GestureDetector(
-                  onTap: () => Navigator.maybePop(context),
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: const Icon(
-                      Icons.chevron_left,
-                      color: AppColors.textWhite,
-                      size: 22,
+          // 2. Content
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.screenPadding,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: AppSpacing.md),
+
+                  // Glassmorphic Back Button
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: GestureDetector(
+                        onTap: () => Navigator.maybePop(context),
+                        child: Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.2),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.3),
+                              width: 1.5,
+                            ),
+                          ),
+                          child: const Icon(
+                            Icons.chevron_left,
+                            color: Colors.black, // Darker icon for contrast on mesh
+                            size: 28,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
 
-                const Spacer(),
+                  const Spacer(flex: 3),
 
-                // Hero headline
-                Text(
-                  'Find Your PEBC\nStarting Point In\nMinutes.',
-                  style: AppTextStyles.heroHeadline,
-                ),
+                  // Hero headline (stays on mesh)
+                  Text(
+                    'Find Your PEBC\nStarting Point In\nMinutes.',
+                    style: AppTextStyles.heroHeadline,
+                  ),
 
-                const SizedBox(height: AppSpacing.xl),
+                  const Spacer(flex: 1),
 
-                // Subtitle
-                Text(
-                  'Answer A Short Set Of Topic-Based Questions And Discover Where To Focus Your Study Time Next.',
-                  style: AppTextStyles.heroSubtitle,
-                ),
+                  // Subtitle (positioned on white area)
+                  const Text(
+                    'Answer a short set of topic-based questions and discover where to focus your study time next.',
+                    style: AppTextStyles.heroSubtitle,
+                  ),
 
-                const SizedBox(height: AppSpacing.xxl),
+                  const SizedBox(height: AppSpacing.xxl),
 
-                // CTA button
-                ExamButton(
-                  label: 'Get Started',
-                  onPressed: _onGetStarted,
-                  backgroundColor: Colors.white.withOpacity(0.25),
-                ),
+                  // CTA button (bottom)
+                  ExamButton(
+                    label: 'Get Started',
+                    onPressed: _onGetStarted,
+                    backgroundColor: AppColors.ctaButton,
+                    textColor: AppColors.textWhite,
+                  ),
 
-                const SizedBox(height: AppSpacing.xl),
-              ],
+                  const SizedBox(height: AppSpacing.xl),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

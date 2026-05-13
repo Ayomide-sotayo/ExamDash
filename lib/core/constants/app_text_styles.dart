@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTextStyles {
   // Hero headline (Screen 1 - white on gradient)
-  static const heroHeadline = TextStyle(
-    fontSize: 32,
+  static TextStyle heroHeadline = GoogleFonts.gluten(
+    fontSize: 42,
     fontWeight: FontWeight.w700,
     color: AppColors.textWhite,
-    height: 1.2,
+    height: 1.1,
     letterSpacing: -0.5,
   );
 
-  // Hero subtitle (Screen 1 - white on gradient)
+  // Hero subtitle (Screen 1 - now on white background)
   static const heroSubtitle = TextStyle(
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: AppColors.textWhite,
-    height: 1.6,
+    color: AppColors.textSecondary,
+    height: 1.4,
   );
 
   // Section label e.g. "Before you begin"

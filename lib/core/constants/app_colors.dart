@@ -18,9 +18,9 @@ class AppColors {
   static const textLabel     = Color(0xFF999999);
 
   // CTA Button
-  static const ctaButton     = Color(0xFFFF3D57);
+  static const ctaButton     = Color(0xFFFF4B55); // Vibrant red/coral from Figma
   static const ctaButtonText = Color(0xFFFFFFFF);
 
   // Bullet / accent
-  static const bulletDot     = Color(0xFFFF4757);
+  static const bulletDot     = Color(0xFFFF4B55);
 }

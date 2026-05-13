@@ -28,7 +28,7 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -43,16 +43,16 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
               GestureDetector(
                 onTap: () => Navigator.maybePop(context),
                 child: Container(
-                  width: 36,
-                  height: 36,
+                  width: 40,
+                  height: 40,
                   decoration: BoxDecoration(
-                    color: AppColors.offWhite,
-                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.cardBg,
+                    shape: BoxShape.circle,
                   ),
                   child: const Icon(
                     Icons.chevron_left,
                     color: AppColors.textPrimary,
-                    size: 22,
+                    size: 24,
                   ),
                 ),
               ),
@@ -65,12 +65,14 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
                 style: AppTextStyles.sectionLabel,
               ),
 
-              const SizedBox(height: AppSpacing.sm),
+              const SizedBox(height: AppSpacing.md),
 
               // Main heading
               Text(
                 'This Short Diagnostic Helps Identify Which PEBC Topics Need The Most Attention Right Now.',
-                style: AppTextStyles.screenHeading,
+                style: AppTextStyles.screenHeading.copyWith(
+                  fontSize: 24,
+                ),
               ),
 
               const SizedBox(height: AppSpacing.xl),
@@ -80,15 +82,15 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: AppColors.cardBg,
-                  borderRadius: BorderRadius.circular(AppSpacing.cardBorderRadius),
+                  borderRadius: BorderRadius.circular(24),
                 ),
-                padding: const EdgeInsets.all(AppSpacing.cardPadding),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   children: const [
                     _BulletItem(text: 'Answer Topic-Based Question One At A Time'),
-                    SizedBox(height: AppSpacing.md),
+                    SizedBox(height: AppSpacing.lg),
                     _BulletItem(text: 'Discover Where To Focus Your Study Sessions'),
-                    SizedBox(height: AppSpacing.md),
+                    SizedBox(height: AppSpacing.lg),
                     _BulletItem(text: 'Receive A Personalized Study Starting Point'),
                   ],
                 ),
@@ -100,6 +102,8 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
               ExamButton(
                 label: 'Start Diagnostic',
                 onPressed: _onStartDiagnostic,
+                backgroundColor: AppColors.ctaButton,
+                textColor: AppColors.textWhite,
               ),
 
               const SizedBox(height: AppSpacing.xl),

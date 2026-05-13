@@ -16,7 +16,7 @@ class ExamButton extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     this.isDisabled = false,
-    this.backgroundColor,
+    this.backgroundColor, required Color textColor,
   });
 
   @override
