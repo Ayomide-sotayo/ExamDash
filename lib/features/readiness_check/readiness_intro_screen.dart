@@ -39,30 +39,41 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
             children: [
               const SizedBox(height: AppSpacing.lg),
 
-              // Back arrow
+              // Pill-shaped Back Button (48x37)
               GestureDetector(
                 onTap: () => Navigator.maybePop(context),
                 child: Container(
-                  width: 40,
-                  height: 40,
+                  width: 48,
+                  height: 37,
                   decoration: BoxDecoration(
-                    color: AppColors.cardBg,
-                    shape: BoxShape.circle,
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(9999),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.08),
+                        blurRadius: 6.9,
+                        offset: const Offset(0, 0),
+                      ),
+                    ],
                   ),
-                  child: const Icon(
-                    Icons.chevron_left,
-                    color: AppColors.textPrimary,
-                    size: 24,
+                  child: const Center(
+                    child: Icon(
+                      Icons.chevron_left,
+                      color: AppColors.textPrimary,
+                      size: 20,
+                    ),
                   ),
                 ),
               ),
 
               const SizedBox(height: AppSpacing.xl),
 
-              // "Before you begin" label
+              // "Before you begin" label (Grey)
               Text(
                 'Before you begin',
-                style: AppTextStyles.sectionLabel,
+                style: AppTextStyles.sectionLabel.copyWith(
+                  color: AppColors.textSecondary,
+                ),
               ),
 
               const SizedBox(height: AppSpacing.md),
@@ -72,25 +83,29 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
                 'This Short Diagnostic Helps Identify Which PEBC Topics Need The Most Attention Right Now.',
                 style: AppTextStyles.screenHeading.copyWith(
                   fontSize: 24,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
 
               const SizedBox(height: AppSpacing.xl),
 
-              // Bullet points card
+              // Bullet points card (Lighter grey)
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: AppColors.cardBg,
+                  color: const Color(0xFFF9F9F9), // Very light grey
                   borderRadius: BorderRadius.circular(24),
                 ),
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 32, // More vertical padding
+                ),
                 child: Column(
                   children: const [
                     _BulletItem(text: 'Answer Topic-Based Question One At A Time'),
-                    SizedBox(height: AppSpacing.lg),
+                    SizedBox(height: 24), // Increased spacing
                     _BulletItem(text: 'Discover Where To Focus Your Study Sessions'),
-                    SizedBox(height: AppSpacing.lg),
+                    SizedBox(height: 24), // Increased spacing
                     _BulletItem(text: 'Receive A Personalized Study Starting Point'),
                   ],
                 ),
@@ -127,16 +142,21 @@ class _BulletItem extends StatelessWidget {
       children: [
         Container(
           margin: const EdgeInsets.only(top: 6),
-          width: 6,
-          height: 6,
+          width: 5,
+          height: 5,
           decoration: const BoxDecoration(
-            color: AppColors.bulletDot,
+            color: Color(0xFF999999), // Grey dots
             shape: BoxShape.circle,
           ),
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: Text(text, style: AppTextStyles.bulletText),
+          child: Text(
+            text,
+            style: AppTextStyles.bulletText.copyWith(
+              color: AppColors.textSecondary, // Grey text
+            ),
+          ),
         ),
       ],
     );
