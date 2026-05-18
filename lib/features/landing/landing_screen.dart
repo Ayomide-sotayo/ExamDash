@@ -34,10 +34,10 @@ class _LandingScreenState extends State<LandingScreen> {
         children: [
           // 1. Full-screen Mesh Background (Shifted more upward)
           Positioned.fill(
-            top: -100, 
+            top: -50, 
             child: Image.asset(
               'assets/gradient.png',
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               alignment: const Alignment(0, -0.6), // Pull the vibrant core higher
             ),
           ),
@@ -85,28 +85,26 @@ class _LandingScreenState extends State<LandingScreen> {
                     ),
                   ),
 
-                  const Spacer(flex: 2), // Reduced from 3 to move headline up
+                  const Spacer(flex: 2), // Move headline even higher
 
                   // Hero headline (on mesh)
                   Text(
                     'Find Your PEBC\nStarting Point In\nMinutes.',
-                    style: AppTextStyles.heroHeadline.copyWith(
-                      fontSize: 44,
-                    ),
+                    style: AppTextStyles.heroHeadline,
                   ),
 
-                  const Spacer(flex: 2),
+                  const SizedBox(height: 250), // Tightened gap
 
-                  // Subtitle
-                  const Padding(
-                    padding: EdgeInsets.only(top: 0.0), // Tightened
+                  // Subtitle (Padded to force 3 lines)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40.0), // Force wrapping
                     child: Text(
                       'Answer a short set of topic-based questions and discover where to focus your study time next.',
                       style: AppTextStyles.heroSubtitle,
                     ),
                   ),
 
-                  const SizedBox(height: AppSpacing.xxl),
+                  const SizedBox(height: 70), // Gap before button
 
                   // CTA button
                   ExamButton(
@@ -116,7 +114,7 @@ class _LandingScreenState extends State<LandingScreen> {
                     textColor: AppColors.textWhite,
                   ),
 
-                  const SizedBox(height: AppSpacing.xl),
+                  const Spacer(flex: 2), // Lift everything up from the bottom
                 ],
               ),
             ),

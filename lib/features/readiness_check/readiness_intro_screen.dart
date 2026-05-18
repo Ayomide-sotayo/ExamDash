@@ -22,7 +22,7 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
 
   void _onStartDiagnostic() {
     EventTracker.track('readiness_check_started');
-    Navigator.pushNamed(context, AppRoutes.readinessCheck);
+    Navigator.pushNamed(context, AppRoutes.examContext);
   }
 
   @override
@@ -76,7 +76,7 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
                 ),
               ),
 
-              const SizedBox(height: AppSpacing.md),
+              const SizedBox(height: AppSpacing.sm),
 
               // Main heading
               Text(
@@ -89,39 +89,48 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
 
               const SizedBox(height: AppSpacing.xl),
 
-              // Bullet points card (Lighter grey)
+              // Bullet points card (Fixed height, 24px radius)
               Container(
                 width: double.infinity,
+                height: 227, // Exactly as requested
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF9F9F9), // Very light grey
+                  color: const Color(0xFFF9F9F9),
                   borderRadius: BorderRadius.circular(24),
                 ),
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
-                  vertical: 32, // More vertical padding
+                  vertical: 24, // Increased padding
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center, // Centering items vertically in box
                   children: const [
                     _BulletItem(text: 'Answer Topic-Based Question One At A Time'),
-                    SizedBox(height: 24), // Increased spacing
+                    SizedBox(height: 32), // Increased space between items
                     _BulletItem(text: 'Discover Where To Focus Your Study Sessions'),
-                    SizedBox(height: 24), // Increased spacing
+                    SizedBox(height: 32), // Increased space between items
                     _BulletItem(text: 'Receive A Personalized Study Starting Point'),
                   ],
                 ),
               ),
 
-              const Spacer(),
+              const Spacer(flex: 2), // Move button up
 
-              // CTA button
+              // CTA button (Gradient)
               ExamButton(
                 label: 'Start Diagnostic',
                 onPressed: _onStartDiagnostic,
-                backgroundColor: AppColors.ctaButton,
+                gradient: const LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFFFF5B40),
+                    Color(0xFFFF4172),
+                  ],
+                ),
                 textColor: AppColors.textWhite,
               ),
 
-              const SizedBox(height: AppSpacing.xl),
+              const SizedBox(height: AppSpacing.xxl), // Some space at bottom
             ],
           ),
         ),
@@ -151,10 +160,11 @@ class _BulletItem extends StatelessWidget {
         ),
         const SizedBox(width: AppSpacing.sm),
         Expanded(
-          child: Text(
-            text,
-            style: AppTextStyles.bulletText.copyWith(
-              color: AppColors.textSecondary, // Grey text
+          child: Padding(
+            padding: const EdgeInsets.only(right: 30.0), // Force 2-line wrap
+            child: Text(
+              text,
+              style: AppTextStyles.bulletText,
             ),
           ),
         ),

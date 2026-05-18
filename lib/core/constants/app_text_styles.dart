@@ -5,19 +5,20 @@ import 'app_colors.dart';
 class AppTextStyles {
   // Hero headline (Screen 1 - white on gradient)
   static TextStyle heroHeadline = GoogleFonts.gluten(
-    fontSize: 42,
-    fontWeight: FontWeight.w700,
+    fontSize: 40,
+    fontWeight: FontWeight.w500,
     color: AppColors.textWhite,
-    height: 1.1,
-    letterSpacing: -0.5,
+    height: 1.59,
+    letterSpacing: 0,
   );
 
   // Hero subtitle (Screen 1 - now on white background)
-  static const heroSubtitle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
+  static TextStyle heroSubtitle = GoogleFonts.poppins(
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
     color: AppColors.textSecondary,
-    height: 1.4,
+    height: 1.46,
+    letterSpacing: 1,
   );
 
   // Section label e.g. "Before you begin"
@@ -37,11 +38,12 @@ class AppTextStyles {
   );
 
   // Card bullet text
-  static const bulletText = TextStyle(
-    fontSize: 14,
+  static TextStyle bulletText = GoogleFonts.roboto(
+    fontSize: 16,
     fontWeight: FontWeight.w400,
-    color: AppColors.textPrimary,
-    height: 1.5,
+    color: AppColors.textSecondary,
+    height: 1.4, // Increased height for better multi-line readability
+    letterSpacing: 0,
   );
 
   // CTA button label

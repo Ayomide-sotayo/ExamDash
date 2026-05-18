@@ -6,6 +6,9 @@ import 'providers/diagnostic_provider.dart';
 import 'providers/result_mission_provider.dart';
 import 'features/landing/landing_screen.dart';
 import 'features/readiness_check/readiness_intro_screen.dart';
+import 'features/exam_context/exam_context_screen.dart';
+import 'features/diagnostic/diagnostic_welcome_screen.dart';
+import 'features/diagnostic/diagnostic_quiz_screen.dart';
 
 class ExamDashApp extends StatelessWidget {
   const ExamDashApp({super.key});
@@ -29,9 +32,11 @@ class ExamDashApp extends StatelessWidget {
         ),
         initialRoute: AppRoutes.landing,
         routes: {
-          AppRoutes.landing:        (_) => const LandingScreen(),
-          AppRoutes.readinessCheck: (_) => const ReadinessIntroScreen(),
-          // remaining routes added as screens are built
+          AppRoutes.landing:           (_) => const LandingScreen(),
+          AppRoutes.readinessCheck:    (_) => const ReadinessIntroScreen(),
+          AppRoutes.examContext:       (_) => const ExamContextScreen(),
+          AppRoutes.diagnosticWelcome: (_) => const DiagnosticWelcomeScreen(),
+          AppRoutes.diagnosticQuiz:    (_) => const DiagnosticQuizScreen(),
         },
       ),
     );

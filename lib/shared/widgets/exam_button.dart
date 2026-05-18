@@ -9,6 +9,8 @@ class ExamButton extends StatelessWidget {
   final bool isLoading;
   final bool isDisabled;
   final Color? backgroundColor;
+  final Color? textColor;
+  final Gradient? gradient;
 
   const ExamButton({
     super.key,
@@ -16,21 +18,28 @@ class ExamButton extends StatelessWidget {
     required this.onPressed,
     this.isLoading = false,
     this.isDisabled = false,
-    this.backgroundColor, required Color textColor,
+    this.backgroundColor,
+    this.textColor,
+    this.gradient,
   });
 
   @override
   Widget build(BuildContext context) {
     final bool active = !isDisabled && !isLoading;
 
-    return SizedBox(
+    return Container(
       width: double.infinity,
       height: AppSpacing.buttonHeight,
+      decoration: BoxDecoration(
+        color: active ? (backgroundColor ?? AppColors.ctaButton) : AppColors.ctaButton.withOpacity(0.5),
+        gradient: active ? gradient : null,
+        borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
+      ),
       child: ElevatedButton(
         onPressed: active ? onPressed : null,
         style: ElevatedButton.styleFrom(
-          backgroundColor: backgroundColor ?? AppColors.ctaButton,
-          disabledBackgroundColor: AppColors.ctaButton.withOpacity(0.5),
+          backgroundColor: Colors.transparent,
+          shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(AppSpacing.buttonRadius),
           ),
@@ -45,7 +54,12 @@ class ExamButton extends StatelessWidget {
                   strokeWidth: 2.5,
                 ),
               )
-            : Text(label, style: AppTextStyles.ctaLabel),
+            : Text(
+                label, 
+                style: AppTextStyles.ctaLabel.copyWith(
+                  color: textColor ?? AppColors.ctaButtonText,
+                ),
+              ),
       ),
     );
   }
