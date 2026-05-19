@@ -1,10 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_routes.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/events/event_tracker.dart';
+import '../../shared/widgets/exam_back_button.dart';
 import '../../shared/widgets/exam_button.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -34,7 +34,7 @@ class _LandingScreenState extends State<LandingScreen> {
         children: [
           // 1. Full-screen Mesh Background (Shifted more upward)
           Positioned.fill(
-            top: -50, 
+            top: -60, 
             child: Image.asset(
               'assets/gradient.png',
               fit: BoxFit.contain,
@@ -54,36 +54,7 @@ class _LandingScreenState extends State<LandingScreen> {
                   const SizedBox(height: AppSpacing.md),
 
                   // Pill-shaped Glassmorphic Back Button
-                  GestureDetector(
-                    onTap: () => Navigator.maybePop(context),
-                    child: Container(
-                      width: 48,
-                      height: 37,
-                      decoration: BoxDecoration(
-                        color: const Color(0x0DFFFFFF),
-                        borderRadius: BorderRadius.circular(9999),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x0D000000),
-                            blurRadius: 6.9,
-                          ),
-                        ],
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(9999),
-                        child: BackdropFilter(
-                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                          child: const Center(
-                            child: Icon(
-                              Icons.chevron_left,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  const ExamBackButton(onDarkBackground: true),
 
                   const Spacer(flex: 2), // Move headline even higher
 
@@ -97,7 +68,7 @@ class _LandingScreenState extends State<LandingScreen> {
 
                   // Subtitle (Padded to force 3 lines)
                   Padding(
-                    padding: const EdgeInsets.only(right: 40.0), // Force wrapping
+                    padding: const EdgeInsets.only(right: 30.0), // Force wrapping
                     child: Text(
                       'Answer a short set of topic-based questions and discover where to focus your study time next.',
                       style: AppTextStyles.heroSubtitle,

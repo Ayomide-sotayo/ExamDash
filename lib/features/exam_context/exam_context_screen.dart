@@ -6,6 +6,7 @@ import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/events/event_tracker.dart';
 import '../../providers/exam_context_provider.dart';
+import '../../shared/widgets/exam_back_button.dart';
 import '../../shared/widgets/exam_button.dart';
 import '../../shared/widgets/progress_bar.dart';
 
@@ -174,7 +175,7 @@ class _ExamContextScreenState extends State<ExamContextScreen> {
   }
 
   Widget _buildBackButton() {
-    return GestureDetector(
+    return ExamBackButton(
       onTap: () {
         if (_currentStep == 1) {
           setState(() => _currentStep = 0);
@@ -182,21 +183,6 @@ class _ExamContextScreenState extends State<ExamContextScreen> {
           Navigator.maybePop(context);
         }
       },
-      child: Container(
-        width: 48,
-        height: 37,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(9999),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-            ),
-          ],
-        ),
-        child: const Icon(Icons.chevron_left, color: Colors.black, size: 24),
-      ),
     );
   }
 }

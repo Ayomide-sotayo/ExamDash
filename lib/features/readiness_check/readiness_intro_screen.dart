@@ -4,6 +4,7 @@ import '../../core/constants/app_routes.dart';
 import '../../core/constants/app_spacing.dart';
 import '../../core/constants/app_text_styles.dart';
 import '../../core/events/event_tracker.dart';
+import '../../shared/widgets/exam_back_button.dart';
 import '../../shared/widgets/exam_button.dart';
 
 class ReadinessIntroScreen extends StatefulWidget {
@@ -40,31 +41,7 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
               const SizedBox(height: AppSpacing.lg),
 
               // Pill-shaped Back Button (48x37)
-              GestureDetector(
-                onTap: () => Navigator.maybePop(context),
-                child: Container(
-                  width: 48,
-                  height: 37,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(9999),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.08),
-                        blurRadius: 6.9,
-                        offset: const Offset(0, 0),
-                      ),
-                    ],
-                  ),
-                  child: const Center(
-                    child: Icon(
-                      Icons.chevron_left,
-                      color: AppColors.textPrimary,
-                      size: 20,
-                    ),
-                  ),
-                ),
-              ),
+              const ExamBackButton(),
 
               const SizedBox(height: AppSpacing.xl),
 
@@ -92,7 +69,7 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
               // Bullet points card (Fixed height, 24px radius)
               Container(
                 width: double.infinity,
-                height: 227, // Exactly as requested
+                height: 257, // Exactly as requested
                 decoration: BoxDecoration(
                   color: const Color(0xFFF9F9F9),
                   borderRadius: BorderRadius.circular(24),
@@ -101,9 +78,9 @@ class _ReadinessIntroScreenState extends State<ReadinessIntroScreen> {
                   horizontal: 24,
                   vertical: 24, // Increased padding
                 ),
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center, // Centering items vertically in box
-                  children: const [
+                  children: [
                     _BulletItem(text: 'Answer Topic-Based Question One At A Time'),
                     SizedBox(height: 32), // Increased space between items
                     _BulletItem(text: 'Discover Where To Focus Your Study Sessions'),
